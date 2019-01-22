@@ -3,7 +3,7 @@ package ru.javarush.uzikiparts.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "part", schema = "test")
+@Table(name = "part")
 public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
