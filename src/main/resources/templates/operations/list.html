@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="partList">
+    <table class="table table-bordered table-hover horizontal-align" style="color:#000000">
+        <thead>
+        <tr>
+            <th style="width: 65%">Наименование детали
+                <a th:href="@{'/sort'}">
+
+                    <ul class="nav navbar-nav">
+                        <li><i th:if="${sort} == 0" class="fas fa-globe" style="font-size:20px; color:#38b74b "></i>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav">
+                        <li><i th:if="${sort} == 1" class="fas fa-check-circle"
+                               style="font-size:20px; color:#38b74b"></i></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav">
+                        <li><i th:if="${sort} == 2" class="fas fa-times-circle"
+                               style="font-size:20px; color:#b71e3c"></i></li>
+                    </ul>
+                </a>
+            </th>
+            <th style="width: 15%">Необходимость</th>
+            <th style="width: 10%">Кол-во</th>
+            <th style="width: 5%">Редактировать</th>
+            <th style="width: 5%">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:if="${#lists.isEmpty(parts)}">
+            <td>Деталей нет. <i th:if="${sort} != 0"><a th:href="@{'/reload'}">Вернуться на главную</a></i><i
+                    th:if="${sort} == 0"><a th:href="@{'/new'}">Добавить деталь</a></i>.
+            </td>
+        </tr>
+
+
+        <tr th:each="part : ${parts}">
+            <td th:text="${part.name}">Name</td>
+            <td style="text-align: center">
+                <i th:if="${part.necessary} == true" class="fas fa-check-circle"
+                   style="font-size:20px;color:#38b74b"></i>
+                <i th:if="${part.necessary} == false" class="fas fa-times-circle"
+                   style="font-size:20px;color:#b71e3c"></i>
+            </td>
+            <td th:text="${part.amount}" style="text-align: center">Amount</td>
+            <td style="text-align: center"><a th:href="@{'/edit/{id}'(id=${part.id})}"><i class="fas fa-edit"
+                                                                                          style="font-size:20px;color:#38b74b"></i></a>
+            </td>
+            <td style="text-align: center"><a th:href="@{'/delete/{id}'(id=${part.id})}"><i class="fas fa-trash"
+                                                                                            style="font-size:20px;color:#38b74b"></i></a>
+            </td>
+        </tr>
+
+
+        <!--<tr th:if="${sort} == 0 and !${#lists.isEmpty(parts)}">
+            <td style="text-align: right;font-size:16px">Компьютеров, доступных для сборки:</td>
+            <td th:text="${PCamount}" style="text-align: center; font-size:16px">PCamount</td>
+
+        </tr>-->
+
+        <table class="table table-bordered table-hover horizontal-align" style="color:#000000">
+            <tr>
+                <td style="width: 50%; text-align: right;font-size:16px">Компьютеров, доступных для сборки:</td>
+                <td th:text="${PCamount}" style="width: 50%; text-align: left; font-size:16px">PCamount</td>
+            </tr>
+        </table>
+
+        <tr th:if="${sort} == 3 and !${#lists.isEmpty(parts)}">
+            <td><i><a th:href="@{'/reload'}">&larr;Назад</a></i></td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <table class="pagination-sm" align="center" th:unless="${totalElements} == 0">
+        <tr>
+
+            <td><a href="#" class="navbar-brand" th:href="@{'/?page={page}'(page=0)}"
+                   style="font-size:16px; color:#000000">&larr; В начало</a></td>
+
+            <td style="text-align:center" th:if="${number} == 0">
+                <a class="navbar-brand" th:href="@{'/?page={page}'(page=0)}" style="font-size:16px">&lt;</a>
+            </td>
+
+
+            <td style="text-align:center" th:unless="${number} == 0">
+                <a class="navbar-brand" th:href="@{'/?page={page}'(page=${number}-1)}"
+                   style="font-size:16px; color:#000000">&lt;</a>
+            </td>
+            <td class="nav navbar-nav" style="text-align:center;">
+                <a class="navbar-brand" th:href="@{'/?page={page}'(page=${number})}"
+                   style="font-size:16px; color:#000000">
+                    <b th:text="${number}+1">Number</b>
+                    <b>/</b>
+                    <b th:text="${totalPages}">Number</b>
+                </a>
+            </td>
+
+            <td style="text-align:center" th:if="${number} == ${totalPages}-1">
+                <a class="navbar-brand" th:href="@{'/?page={page}'(page=${number})}" style="font-size:16px">&gt;</a>
+            </td>
+
+            <td style="text-align:center" th:unless="${number} == ${totalPages}-1">
+                <a class="navbar-brand" th:href="@{'/?page={page}'(page=${number}+1)}"
+                   style="font-size:16px; color:#000000">&gt;</a>
+            </td>
+
+
+            <td><a class="navbar-brand" th:href="@{'/?page={page}'(page=${totalPages}-1)}"
+                   style="font-size:16px; color:#000000">В конец &rarr;</a></td>
+
+        </tr>
+    </table>
+</div>
+</html>

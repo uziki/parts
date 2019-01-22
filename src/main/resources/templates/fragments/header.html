@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+    <nav class="navbar-default navbar-dark " style="background-color: #31b649" >
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" th:href="@{/reload}">На главную</a></li>
+                    <li><a href="#" th:href="@{/new}">Добавить деталь</a></li>
+                </ul>
+            </div>
+
+            <form class="navbar-form" th:action="@{/find/}" name="find_form" id="find_form"
+                  method="post" role="form">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" th:name="name" placeholder="Введите название детали:" style="width: 200px"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="background-color:#38b74b">Поиск</button>
+            </form>
+
+        </div>
+    </nav>
+
+</div>
+</html>
