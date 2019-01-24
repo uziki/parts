@@ -20,15 +20,13 @@ public class PartController {
     private boolean switcher = false;
     private String findString = "";
 
-
     @Autowired
-    public void setPartService(PartService service) {
+    public PartController(PartService service){
         this.service = service;
     }
 
-
     @GetMapping("/")
-    public String list(Model model, @PageableDefault(size = 10) Pageable pageable) {
+    public String list(Model model, @PageableDefault Pageable pageable) {
         int PCamount = getPCAmount();
         Page<Part> pages = setPagesUp(pageable);
 
@@ -100,23 +98,11 @@ public class PartController {
         return "redirect:/";
     }
 
-
     @GetMapping("/reload")
     public String reset() {
         sort = 0;
         switcher = false;
         return "redirect:/";
-    }
-
-    @GetMapping("/list")
-    public String userList(Model model, Pageable pageable) {
-        Page<Part> pages = service.findAllByOrderByName(pageable);
-        model.addAttribute("number", pages.getNumber());
-        model.addAttribute("totalPages", pages.getTotalPages());
-        model.addAttribute("totalElements", pages.getTotalElements());
-        model.addAttribute("size", pages.getSize());
-        model.addAttribute("parts", pages.getContent());
-        return "/user/list";
     }
 
     private int getPCAmount() {

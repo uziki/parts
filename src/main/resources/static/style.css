@@ -1,0 +1,13 @@
+body {
+    padding-top: 7rem;
+    background-color: #F8F8FF;
+}.align-template {
+     text-align: center;
+ }
+
+table.horizontal-align th {
+    text-align: center;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ecf0f1;
+}

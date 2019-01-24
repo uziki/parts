@@ -11,9 +11,13 @@ import java.util.List;
 
 @Service
 public class PartServiceImpl implements PartService {
-    @Autowired
+
     private PartsRepository repository;
 
+    @Autowired
+    public PartServiceImpl(PartsRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Part getPartById(Integer id) {

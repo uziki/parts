@@ -11,20 +11,26 @@
                 <a th:href="@{'/sort'}">
 
                     <ul class="nav navbar-nav">
-                        <li><i th:if="${sort} == 0" class="fas fa-globe" style="font-size:20px; color:#38b74b "></i>
+                        <li><i class="fas fa-sort" style="font-size:20px; color:#38b74b"></i>
                         </li>
                     </ul>
-
-                    <ul class="nav navbar-nav">
-                        <li><i th:if="${sort} == 1" class="fas fa-check-circle"
-                               style="font-size:20px; color:#38b74b"></i></li>
-                    </ul>
-
-                    <ul class="nav navbar-nav">
-                        <li><i th:if="${sort} == 2" class="fas fa-times-circle"
-                               style="font-size:20px; color:#b71e3c"></i></li>
-                    </ul>
                 </a>
+                <ul class="nav navbar-nav">
+                    <li><i th:if="${sort} == 0" class="fas fa-globe" style="font-size:20px; color:#38b74b "></i>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li><i th:if="${sort} == 1" class="fas fa-check-circle"
+                           style="font-size:20px; color:#38b74b"></i></li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li><i th:if="${sort} == 2" class="fas fa-times-circle"
+                           style="font-size:20px; color:#b71e3c"></i></li>
+                </ul>
+
+
             </th>
             <th style="width: 15%">Необходимость</th>
             <th style="width: 10%">Кол-во</th>
@@ -58,12 +64,6 @@
             </td>
         </tr>
 
-
-        <!--<tr th:if="${sort} == 0 and !${#lists.isEmpty(parts)}">
-            <td style="text-align: right;font-size:16px">Компьютеров, доступных для сборки:</td>
-            <td th:text="${PCamount}" style="text-align: center; font-size:16px">PCamount</td>
-
-        </tr>-->
 
         <table class="table table-bordered table-hover horizontal-align" style="color:#000000">
             <tr>
